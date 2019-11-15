@@ -11,6 +11,9 @@ import java.io.IOException;
 
 public class ControllerParent {
 
+    public static String client;
+    public static String currentOrder;
+
     public void openNewScene(Node node, String window) {
         node.getScene().getWindow().hide();
 
@@ -27,7 +30,7 @@ public class ControllerParent {
         Stage stage = new Stage();
         stage.setTitle("Учет клиентов");
         stage.getIcons().add(new Image("/image/stackoverflow.png"));
-        stage.setScene(new Scene(root));
+        stage.setScene(new Scene(root, 800, 500));
         stage.show();
 
     }

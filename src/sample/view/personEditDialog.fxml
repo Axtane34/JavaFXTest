@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #3c3f41;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.PersonEditDialogController">
+  <children>
+    <AnchorPane layoutY="123.0" prefHeight="377.0" prefWidth="800.0" style="-fx-background-color: #2b2b2b;">
+      <children>
+        <Button fx:id="currentOrderButton" layoutX="636.0" layoutY="273.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="148.0" text="Текущий заказ" textFill="#3c3f41">
+          <font>
+            <Font name="Monospaced Bold" size="14.0" />
+          </font>
+        </Button>
+        <Button fx:id="orderHistoryButton" layoutX="14.0" layoutY="273.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="148.0" text="История заказов" textFill="#3c3f41">
+          <font>
+            <Font name="Monospaced Bold" size="14.0" />
+          </font>
+        </Button>
+            <Button fx:id="backButton" layoutX="14.0" layoutY="310.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="148.0" text="Вернуться" textFill="#3c3f41">
+               <font>
+                  <Font name="Monospaced Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="createNewOrderButton" layoutX="636.0" layoutY="310.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="148.0" text="Новый заказ" textFill="#3c3f41">
+               <font>
+                  <Font name="Monospaced Bold" size="14.0" />
+               </font>
+            </Button>
+      </children>
+    </AnchorPane>
+    <Label layoutX="15.0" layoutY="14.0" prefHeight="20.0" prefWidth="161.0" text="База клиентов" textFill="#9a7731">
+      <font>
+        <Font name="Monospaced Bold" size="16.0" />
+      </font>
+    </Label>
+      <TextArea fx:id="currentClientField" editable="false" layoutX="15.0" layoutY="35.0" prefHeight="74.0" prefWidth="255.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextArea>
+  </children>
+</AnchorPane>

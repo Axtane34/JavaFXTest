@@ -8,8 +8,10 @@ import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 
 public class Controller extends ControllerParent {
 
@@ -36,13 +38,16 @@ public class Controller extends ControllerParent {
     private TableView<ReceiveUser> tableView;
 
     @FXML
-    public TableColumn<ReceiveUser, String> usernameColumn;
+    private TableColumn<ReceiveUser, String> usernameColumn;
 
     @FXML
     private TableColumn<ReceiveUser, String> lastnameColumn;
 
     @FXML
     private TableColumn<ReceiveUser, String> phoneColumn;
+
+    @FXML
+    private TableColumn<ReceiveUser, String> currentOrderColumn;
 
     @FXML
     private Button search_button;
@@ -63,6 +68,7 @@ public class Controller extends ControllerParent {
                 e.printStackTrace();
             }
         });
+
     }
 
     public void searchUser() throws SQLException {
@@ -81,7 +87,8 @@ public class Controller extends ControllerParent {
                 String firstColumn = resultSet.getString("lastname");
                 String secondColumn = resultSet.getString("firstname");
                 String thirdColumn = resultSet.getString("phone");
-                data.add(new ReceiveUser(firstColumn,secondColumn,thirdColumn));
+                String fourthColumn = resultSet.getString("currentOrder");
+                data.add(new ReceiveUser(firstColumn,secondColumn,thirdColumn,fourthColumn));
                 count++;
             }
         } catch (SQLException e) {
@@ -100,11 +107,29 @@ public class Controller extends ControllerParent {
         usernameColumn.setCellValueFactory(cell -> cell.getValue().firstnameProperty());
         lastnameColumn.setCellValueFactory(cell -> cell.getValue().lastnameProperty());
         phoneColumn.setCellValueFactory(cell -> cell.getValue().phoneProperty());
+        currentOrderColumn.setCellValueFactory(cell -> cell.getValue().currentOrderProperty());
         tableView.setItems(data);
         dataBaseHandler.dbConnection.close();
 
+
+        tableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent click) {
+                if (click.getClickCount() == 2) {
+                    tableView.getSelectionModel().getSelectedItem();
+                    if (tableView.getSelectionModel().getSelectedItem().getCurrentOrder().equals("+")){
+                        currentOrder = "существует";
+                    }else
+                        currentOrder = "отсутствует";
+                    client = tableView.getSelectionModel().getSelectedItem().getFirstname() + " "
+                            + tableView.getSelectionModel().getSelectedItem().getLastname() + "\n"
+                            + tableView.getSelectionModel().getSelectedItem().getPhone() + "\n"
+                            + "Текущий заказ " + currentOrder;
+                    openNewScene(createButton, "/sample/view/personEditDialog.fxml");
+
+                }
+            }
+        });
     }
-
-
 
 }
