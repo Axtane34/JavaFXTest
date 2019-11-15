@@ -101,6 +101,7 @@ public class Controller extends ControllerParent {
         lastnameColumn.setCellValueFactory(cell -> cell.getValue().lastnameProperty());
         phoneColumn.setCellValueFactory(cell -> cell.getValue().phoneProperty());
         tableView.setItems(data);
+        dataBaseHandler.dbConnection.close();
 
     }
 
