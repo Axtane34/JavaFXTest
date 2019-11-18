@@ -48,7 +48,6 @@ public class CreateOrderFrameController extends ControllerParent {
         hours.setItems(data);
         days.setItems(data);
 
-
         backButton.setOnAction(event -> {
             openNewScene(backButton, "/sample/view/personEditDialog.fxml");
         });

@@ -7,7 +7,7 @@ public class DataBaseHandler extends Configs {
     Connection dbConnection;
 
     public Connection getConnection() throws SQLException {
-        String connectionString = "jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName + "?useUnicode=true&serverTimezone=UTC";
+        String connectionString = "jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Europe/Moscow";
 
         dbConnection = DriverManager.getConnection(connectionString, dbUser, dbPass);
 
@@ -56,7 +56,6 @@ public class DataBaseHandler extends Configs {
                 preparedStatement.executeUpdate();
                 Statement statement = getConnection().createStatement();
                 String hex = "UPDATE users SET currentOrder = " + "'+'" + " WHERE phone = " + user.getPhone();
-                System.out.println(hex);
                 statement.executeUpdate(hex);
             } catch (SQLException e) {
                 e.printStackTrace();

@@ -110,9 +110,21 @@ public class ControllerParent {
             String lastname = surname_field.getText().trim();
             String phone = phone_field.getText().trim();
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-            Timestamp timestamp1 = new Timestamp(System.currentTimeMillis() + (hours.getValue()*1000*60*60) + (days.getValue()*1000*60*60*24));
+            Timestamp timestamp1 = new Timestamp(System.currentTimeMillis());
+            int money = 0;
+            try {
+                timestamp1.setTime(System.currentTimeMillis() + (hours.getValue() * 1000 * 60 * 60) + (days.getValue() * 1000 * 60 * 60 * 24));
+                money = Integer.parseInt(price.getText().trim());
+            }catch (NullPointerException | NumberFormatException e){
+                alert.setAlertType(Alert.AlertType.ERROR);
+                alert.setTitle("Ошибка :(");
+                alert.setHeaderText(null);
+                alert.setContentText("Задайте ориентировочное время работы и цену!");
+
+                alert.showAndWait();
+            }
+
             String details = orderDetail.getText().trim();
-            int money = Integer.parseInt(price.getText().trim());
             String check = "-";
             if (checkPayment.isSelected()){
                 check = "+";
@@ -120,9 +132,8 @@ public class ControllerParent {
             Pattern pattern = Pattern.compile("^(8)\\d{10}");
             Matcher matcher = pattern.matcher(phone);
 
-            User user = new User(firstname,lastname,phone,timestamp,timestamp1,details,money,check);
+            if (!firstname.equals("") && !lastname.equals("") && !phone.equals("") && !timestamp.equals(timestamp1) && !details.equals("") && !price.getText().trim().equals("")) {
 
-            if (!firstname.equals("") && !lastname.equals("") && !phone.equals("") && !timestamp.equals(null) && !timestamp1.equals(null) && !details.equals("") && money!=0) {
                 if (!matcher.matches()) {
                     alert.setAlertType(Alert.AlertType.ERROR);
                     alert.setTitle("Ошибка");
@@ -131,6 +142,7 @@ public class ControllerParent {
 
                     alert.showAndWait();
                 } else {
+                    User user = new User(firstname,lastname,phone,timestamp,timestamp1,details,money,check);
                     dataBaseHandler.executeUser(user);
                     alert.setAlertType(Alert.AlertType.INFORMATION);
                     alert.setTitle("Информация");
