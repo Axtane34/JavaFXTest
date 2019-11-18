@@ -8,6 +8,7 @@ public class ReceiveUser {
     private StringProperty lastname;
     private StringProperty phone;
     private StringProperty currentOrder;
+    private int id;
 
     public ReceiveUser(){
 
@@ -25,6 +26,22 @@ public class ReceiveUser {
         this.lastname = new SimpleStringProperty(lastname);
         this.phone = new SimpleStringProperty(phone);
         this.currentOrder = new SimpleStringProperty(currentOrder);
+    }
+
+    public ReceiveUser(String firstname, String lastname, String phone, String currentOrder, int id) {
+        this.firstname = new SimpleStringProperty(firstname);
+        this.lastname = new SimpleStringProperty(lastname);
+        this.phone = new SimpleStringProperty(phone);
+        this.currentOrder = new SimpleStringProperty(currentOrder);
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getCurrentOrder() {

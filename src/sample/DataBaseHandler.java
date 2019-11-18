@@ -1,6 +1,7 @@
 package sample;
 
 import java.sql.*;
+import java.util.Calendar;
 
 public class DataBaseHandler extends Configs {
     Connection dbConnection;
@@ -14,20 +15,52 @@ public class DataBaseHandler extends Configs {
     }
 
     public void executeUser(User user) {
-        String insert = "INSERT INTO " + Const.USER_TABLE + "("
-                + Const.USERS_FIRSTNAME + ", "
-                + Const.USERS_LASTNAME + ", "
-                + Const.USERS_PHONE + ")" +
-                "VALUES(?,?,?)";
-        try {
-            PreparedStatement preparedStatement = getConnection().prepareStatement(insert);
-            preparedStatement.setString(1, user.getFirstname());
-            preparedStatement.setString(2, user.getLastname());
-            preparedStatement.setString(3, user.getPhone());
+        if (user.getStartOrderDate()==null) {
+            String insert = "INSERT INTO " + Const.USER_TABLE + "("
+                    + Const.USERS_FIRSTNAME + ", "
+                    + Const.USERS_LASTNAME + ", "
+                    + Const.USERS_PHONE + ")" +
+                    "VALUES(?,?,?)";
+            try {
+                PreparedStatement preparedStatement = getConnection().prepareStatement(insert);
+                preparedStatement.setString(1, user.getFirstname());
+                preparedStatement.setString(2, user.getLastname());
+                preparedStatement.setString(3, user.getPhone());
 
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+                preparedStatement.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }else {
+            String insert = "INSERT INTO " + Const.ORDERS_TABLE + "("
+                    + Const.USERS_FIRSTNAME + ", "
+                    + Const.USERS_LASTNAME + ", "
+                    + Const.USERS_PHONE + ", "
+                    + Const.ORDERS_STARTORDERDATE + ", "
+                    + Const.ORDERS_ENDORDERDATE + ", "
+                    + Const.ORDERS_ORDERDETAILS + ", "
+                    + Const.ORDERS_PRICE + ", "
+                    + Const.ORDERS_CHECKPAYMENT + ")" +
+                    "VALUES(?,?,?,?,?,?,?,?)";
+            try {
+                PreparedStatement preparedStatement = getConnection().prepareStatement(insert);
+                preparedStatement.setString(1, user.getFirstname());
+                preparedStatement.setString(2, user.getLastname());
+                preparedStatement.setString(3, user.getPhone());
+                preparedStatement.setTimestamp(4, user.getStartOrderDate());
+                preparedStatement.setTimestamp(5, user.getEndOrderDate());
+                preparedStatement.setString(6, user.getOrderDetails());
+                preparedStatement.setInt(7, user.getPrice());
+                preparedStatement.setString(8, user.getCheckPayment());
+
+                preparedStatement.executeUpdate();
+                Statement statement = getConnection().createStatement();
+                String hex = "UPDATE users SET currentOrder = " + "'+'" + " WHERE phone = " + user.getPhone();
+                System.out.println(hex);
+                statement.executeUpdate(hex);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 

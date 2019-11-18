@@ -87,13 +87,13 @@ public class TableController extends ControllerParent {
                 if (click.getClickCount() == 2) {
                     tableView.getSelectionModel().getSelectedItem();
                     if (tableView.getSelectionModel().getSelectedItem().getCurrentOrder().equals("+")) {
-                        currentOrder = "существует";
+                        currentOrder = "Текущий заказ существует";
                     } else
-                        currentOrder = "отсутствует";
+                        currentOrder = "Текущий заказ отсутствует";
                     client = tableView.getSelectionModel().getSelectedItem().getFirstname() + " "
-                            + tableView.getSelectionModel().getSelectedItem().getLastname() + "\n"
-                            + tableView.getSelectionModel().getSelectedItem().getPhone() + "\n"
-                            + "Текущий заказ " + currentOrder;
+                            + tableView.getSelectionModel().getSelectedItem().getLastname() + " " + "\n"
+                            + tableView.getSelectionModel().getSelectedItem().getPhone() + " " + "\n"
+                            + currentOrder;
                     openNewScene(tableView, "/sample/view/personEditDialog.fxml");
                 }
             }

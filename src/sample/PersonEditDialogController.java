@@ -28,6 +28,10 @@ public class PersonEditDialogController extends ControllerParent {
         backButton.setOnAction(event -> {
             openNewScene(backButton, "/sample/view/sample.fxml");
         });
+
+        createNewOrderButton.setOnAction(event -> {
+            openNewScene(createNewOrderButton, "/sample/view/createOrderFrame.fxml");
+        });
     }
 
 }
