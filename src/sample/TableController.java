@@ -94,7 +94,7 @@ public class TableController extends ControllerParent {
                             + tableView.getSelectionModel().getSelectedItem().getLastname() + " " + "\n"
                             + tableView.getSelectionModel().getSelectedItem().getPhone() + " " + "\n"
                             + currentOrder;
-                    openNewScene(tableView, "/sample/view/personEditDialog.fxml");
+                        openNewScene(tableView, "/sample/view/personEditDialog.fxml");
                 }
             }
         });

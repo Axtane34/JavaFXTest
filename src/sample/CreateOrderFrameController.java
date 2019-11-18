@@ -33,9 +33,6 @@ public class CreateOrderFrameController extends ControllerParent {
     @FXML
     private TextField name_field;
 
-
-
-
     @FXML
     void initialize() {
         String [] substr = client.split(" ");
