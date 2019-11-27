@@ -1,7 +1,6 @@
 package sample;
 
 import java.sql.*;
-import java.util.Calendar;
 
 public class DataBaseHandler extends Configs {
     Connection dbConnection;
@@ -63,30 +62,36 @@ public class DataBaseHandler extends Configs {
         }
     }
 
-    public ResultSet findUser(ReceiveUser receiveUser) {
+    public ResultSet findUser(ReceiveUser receiveUser, String table) {
         ResultSet resultSet = null;
-        String select = "SELECT * FROM " + Const.USER_TABLE + " WHERE ";
-        if (!receiveUser.getFirstname().equals("") && !receiveUser.getLastname().equals("") && !receiveUser.getPhone().equals("")) {
-            select += Const.USERS_FIRSTNAME + " = '" + receiveUser.getFirstname() + "'" + " AND " +
-                    Const.USERS_LASTNAME + " = '" + receiveUser.getLastname() + "'" + " AND " +
-                    Const.USERS_PHONE + " = '" + receiveUser.getPhone() + "'";
-        } else if (!receiveUser.getFirstname().equals("") && !receiveUser.getLastname().equals("")) {
-            select += Const.USERS_FIRSTNAME + " = '" + receiveUser.getFirstname() + "'" + " AND " +
-                    Const.USERS_LASTNAME + " = '" + receiveUser.getLastname() + "'";
-        } else if (!receiveUser.getFirstname().equals("") && !receiveUser.getPhone().equals("")) {
-            select += Const.USERS_FIRSTNAME + " = '" + receiveUser.getFirstname() + "'" + " AND " +
-                    Const.USERS_PHONE + " = '" + receiveUser.getPhone() + "'";
-        } else if (!receiveUser.getLastname().equals("") && !receiveUser.getPhone().equals("")) {
-            select += Const.USERS_LASTNAME + " = '" + receiveUser.getLastname() + "'" + " AND " +
-                    Const.USERS_PHONE + " = '" + receiveUser.getPhone() + "'";
-        } else if (!receiveUser.getFirstname().equals("")) {
-            select += Const.USERS_FIRSTNAME + " = '" + receiveUser.getFirstname() + "'";
-        } else if (!receiveUser.getLastname().equals("")) {
-            select += Const.USERS_LASTNAME + " = '" + receiveUser.getLastname() + "'";
-        } else {
-            select += Const.USERS_PHONE + " = '" + receiveUser.getPhone() + "'";
+        String select;
+        if (table.equals(Const.USER_TABLE)) {
+            select = "SELECT * FROM " + Const.USER_TABLE + " WHERE ";
+        }else if(table.equals(Const.ORDERS_TABLE)) {
+            select = "SELECT * FROM " + Const.ORDERS_TABLE + " WHERE ";
+        }else {
+            select = "SELECT * FROM " + Const.ORDERS_HISTORY_TABLE + " WHERE ";
         }
-
+            if (!receiveUser.getFirstname().equals("") && !receiveUser.getLastname().equals("") && !receiveUser.getPhone().equals("")) {
+                select += Const.USERS_FIRSTNAME + " = '" + receiveUser.getFirstname() + "'" + " AND " +
+                        Const.USERS_LASTNAME + " = '" + receiveUser.getLastname() + "'" + " AND " +
+                        Const.USERS_PHONE + " = '" + receiveUser.getPhone() + "'";
+            } else if (!receiveUser.getFirstname().equals("") && !receiveUser.getLastname().equals("")) {
+                select += Const.USERS_FIRSTNAME + " = '" + receiveUser.getFirstname() + "'" + " AND " +
+                        Const.USERS_LASTNAME + " = '" + receiveUser.getLastname() + "'";
+            } else if (!receiveUser.getFirstname().equals("") && !receiveUser.getPhone().equals("")) {
+                select += Const.USERS_FIRSTNAME + " = '" + receiveUser.getFirstname() + "'" + " AND " +
+                        Const.USERS_PHONE + " = '" + receiveUser.getPhone() + "'";
+            } else if (!receiveUser.getLastname().equals("") && !receiveUser.getPhone().equals("")) {
+                select += Const.USERS_LASTNAME + " = '" + receiveUser.getLastname() + "'" + " AND " +
+                        Const.USERS_PHONE + " = '" + receiveUser.getPhone() + "'";
+            } else if (!receiveUser.getFirstname().equals("")) {
+                select += Const.USERS_FIRSTNAME + " = '" + receiveUser.getFirstname() + "'";
+            } else if (!receiveUser.getLastname().equals("")) {
+                select += Const.USERS_LASTNAME + " = '" + receiveUser.getLastname() + "'";
+            } else {
+                select += Const.USERS_PHONE + " = '" + receiveUser.getPhone() + "'";
+            }
         try {
             Statement statement = getConnection().createStatement();
             resultSet = statement.executeQuery(select);

@@ -4,10 +4,8 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 
 public class Controller extends TableController {
 
@@ -25,9 +23,7 @@ public class Controller extends TableController {
 
     @FXML
     void initialize() {
-        createButton.setOnAction(event -> {
-            openNewScene(createButton, "/sample/view/add.fxml");
-        });
+        createButton.setOnAction(event -> openNewScene(createButton, "/sample/view/add.fxml"));
 
         search_button.setOnAction(event1 -> {
             try {

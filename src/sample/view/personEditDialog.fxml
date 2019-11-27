@@ -12,7 +12,7 @@
     <children>
         <AnchorPane layoutY="123.0" prefHeight="377.0" prefWidth="800.0" style="-fx-background-color: #2b2b2b;">
             <children>
-                <Button fx:id="orderHistoryButton" layoutX="326.0" layoutY="310.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="148.0" text="История заказов" textFill="#3c3f41">
+                <Button fx:id="orderHistoryButton" layoutX="221.0" layoutY="310.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="148.0" text="История заказов" textFill="#3c3f41">
                     <font>
                         <Font name="Monospaced Bold" size="14.0" />
                     </font>
@@ -39,6 +39,11 @@
                   <TableColumn fx:id="orderCheckPaymentColumn" prefWidth="64.0" text="Оплата" />
               </columns>
             </TableView>
+            <Button fx:id="currentOrderButton" layoutX="428.0" layoutY="310.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="148.0" text="Текущий заказ" textFill="#3c3f41">
+               <font>
+                  <Font name="Monospaced Bold" size="14.0" />
+               </font>
+            </Button>
             </children>
         </AnchorPane>
         <Label layoutX="15.0" layoutY="14.0" prefHeight="20.0" prefWidth="161.0" text="База клиентов" textFill="#9a7731">

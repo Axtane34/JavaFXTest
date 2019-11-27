@@ -2,14 +2,12 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PersonEditDialogController extends ControllerParent {
+public class PersonEditDialogController extends TableController {
 
     @FXML
     private ResourceBundle resources;
@@ -27,32 +25,7 @@ public class PersonEditDialogController extends ControllerParent {
     private Button createNewOrderButton;
 
     @FXML
-    private TableView<?> orderTableView;
-
-    @FXML
-    private TableColumn<?, ?> orderLastnameColumn;
-
-    @FXML
-    private TableColumn<?, ?> orderFirstnameColumn;
-
-    @FXML
-    private TableColumn<?, ?> orderPhoneColumn;
-
-    @FXML
-    private TableColumn<?, ?> startOrderColumn;
-
-    @FXML
-    private TableColumn<?, ?> endOrderColumn;
-
-    @FXML
-    private TableColumn<?, ?> orderDetailsColumn;
-
-    @FXML
-    private TableColumn<?, ?> orderPriceColumn;
-
-    @FXML
-    private TableColumn<?, ?> orderCheckPaymentColumn;
-
+    private Button currentOrderButton;
 
     @FXML
     private TextArea currentClientField;
@@ -68,7 +41,9 @@ public class PersonEditDialogController extends ControllerParent {
         createNewOrderButton.setOnAction(event -> {
             openNewScene(createNewOrderButton, "/sample/view/createOrderFrame.fxml");
         });
+        currentOrderButton.setOnAction(event -> {
+            searchOrder(Const.ORDERS_TABLE);
+        });
     }
-
 }
 
