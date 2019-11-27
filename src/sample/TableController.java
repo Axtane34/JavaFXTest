@@ -61,6 +61,9 @@ public class TableController extends ControllerParent {
     private TableColumn<ReceiveUser, String> orderCheckPaymentColumn;
 
     @FXML
+    private TableColumn<ReceiveUser, Integer> idColumn;
+
+    @FXML
     private TextField surname_field;
 
     @FXML
@@ -147,7 +150,8 @@ public class TableController extends ControllerParent {
                 String sixthColumn = resultSet.getString("orderDetails");
                 int seventhColumn = resultSet.getInt("price");
                 String eighthColumn = resultSet.getString("CheckPayment");
-                data1.add(new ReceiveUser(firstColumn, secondColumn, thirdColumn, fourthColumn, fifthColumn, sixthColumn, seventhColumn, eighthColumn));
+                int orderId = resultSet.getInt("id");
+                data1.add(new ReceiveUser(firstColumn, secondColumn, thirdColumn, fourthColumn, fifthColumn, sixthColumn, seventhColumn, eighthColumn, orderId));
                 count++;
             }
         } catch (SQLException e) {
@@ -175,6 +179,7 @@ public class TableController extends ControllerParent {
         orderDetailsColumn.setCellValueFactory(cell -> cell.getValue().orderDetailsProperty());
         orderPriceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         orderCheckPaymentColumn.setCellValueFactory(cell -> cell.getValue().checkPaymentProperty());
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         orderTableView.setItems(data1);
     }
 }

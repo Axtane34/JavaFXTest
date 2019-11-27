@@ -12,7 +12,7 @@ public class ReceiveUser {
     private StringProperty orderDetails;
     private IntegerProperty price;
     private StringProperty checkPayment;
-    private int id;
+    private IntegerProperty orderId = new SimpleIntegerProperty(0);
 
     public ReceiveUser(){
 
@@ -32,12 +32,19 @@ public class ReceiveUser {
         this.currentOrder = new SimpleStringProperty(currentOrder);
     }
 
-    public ReceiveUser(String firstname, String lastname, String phone, String currentOrder, int id) {
+    public ReceiveUser(String firstname, String lastname, String phone, String currentOrder, int orderId) {
         this.firstname = new SimpleStringProperty(firstname);
         this.lastname = new SimpleStringProperty(lastname);
         this.phone = new SimpleStringProperty(phone);
         this.currentOrder = new SimpleStringProperty(currentOrder);
-        this.id = id;
+        this.orderId = new SimpleIntegerProperty(orderId);
+    }
+
+    public ReceiveUser(String firstname, String lastname, String phone, int orderId) {
+        this.firstname = new SimpleStringProperty(firstname);
+        this.lastname = new SimpleStringProperty(lastname);
+        this.phone = new SimpleStringProperty(phone);
+        this.orderId = new SimpleIntegerProperty(orderId);
     }
 
     public ReceiveUser(String firstname, String lastname, String phone, String startOrderDate, String endOrderDate, String orderDetails, int price, String checkPayment) {
@@ -49,6 +56,18 @@ public class ReceiveUser {
         this.orderDetails = new SimpleStringProperty(orderDetails);
         this.price = new SimpleIntegerProperty(price);
         this.checkPayment = new SimpleStringProperty(checkPayment);
+    }
+
+    public ReceiveUser(String firstname, String lastname, String phone, String startOrderDate, String endOrderDate, String orderDetails, int price, String checkPayment, int orderId) {
+        this.firstname = new SimpleStringProperty(firstname);
+        this.lastname = new SimpleStringProperty(lastname);
+        this.phone = new SimpleStringProperty(phone);
+        this.startOrderDate = new SimpleStringProperty(startOrderDate);
+        this.endOrderDate = new SimpleStringProperty(endOrderDate);
+        this.orderDetails = new SimpleStringProperty(orderDetails);
+        this.price = new SimpleIntegerProperty(price);
+        this.checkPayment = new SimpleStringProperty(checkPayment);
+        this.orderId = new SimpleIntegerProperty(orderId);
     }
 
 
@@ -112,12 +131,16 @@ public class ReceiveUser {
         this.checkPayment.set(checkPayment);
     }
 
-    public int getId() {
-        return id;
+    public int getOrderId() {
+        return orderId.get();
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public IntegerProperty OrderIdProperty() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId.set(orderId);
     }
 
     public String getCurrentOrder() {

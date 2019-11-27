@@ -37,6 +37,7 @@
                   <TableColumn fx:id="orderDetailsColumn" prefWidth="145.0" text="Детали заказа" />
                   <TableColumn fx:id="orderPriceColumn" prefWidth="67.0" text="Цена" />
                   <TableColumn fx:id="orderCheckPaymentColumn" prefWidth="64.0" text="Оплата" />
+                  <TableColumn fx:id="idColumn" minWidth="0.0" prefWidth="0.0" text="id Заказа" />
               </columns>
             </TableView>
             <Button fx:id="currentOrderButton" layoutX="428.0" layoutY="310.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="148.0" text="Текущий заказ" textFill="#3c3f41">

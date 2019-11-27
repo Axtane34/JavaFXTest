@@ -18,6 +18,7 @@ public class ControllerParent {
 
     public static String client;
     public static String currentOrder;
+    public static int id;
     public Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
     @FXML

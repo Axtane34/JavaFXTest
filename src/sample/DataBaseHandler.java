@@ -72,7 +72,12 @@ public class DataBaseHandler extends Configs {
         }else {
             select = "SELECT * FROM " + Const.ORDERS_HISTORY_TABLE + " WHERE ";
         }
-            if (!receiveUser.getFirstname().equals("") && !receiveUser.getLastname().equals("") && !receiveUser.getPhone().equals("")) {
+            if (!receiveUser.getFirstname().equals("") && !receiveUser.getLastname().equals("") && !receiveUser.getPhone().equals("") && receiveUser.getOrderId()!=0) {
+            select += Const.USERS_FIRSTNAME + " = '" + receiveUser.getFirstname() + "'" + " AND " +
+                    Const.USERS_LASTNAME + " = '" + receiveUser.getLastname() + "'" + " AND " +
+                    Const.USERS_PHONE + " = '" + receiveUser.getPhone() + "'" + " AND " +
+                    Const.USERS_ID + " = '" + receiveUser.getOrderId() + "'";
+            } else if (!receiveUser.getFirstname().equals("") && !receiveUser.getLastname().equals("") && !receiveUser.getPhone().equals("")) {
                 select += Const.USERS_FIRSTNAME + " = '" + receiveUser.getFirstname() + "'" + " AND " +
                         Const.USERS_LASTNAME + " = '" + receiveUser.getLastname() + "'" + " AND " +
                         Const.USERS_PHONE + " = '" + receiveUser.getPhone() + "'";
@@ -95,6 +100,7 @@ public class DataBaseHandler extends Configs {
         try {
             Statement statement = getConnection().createStatement();
             resultSet = statement.executeQuery(select);
+            System.out.println(select);
         } catch (SQLException e) {
             e.printStackTrace();
         }

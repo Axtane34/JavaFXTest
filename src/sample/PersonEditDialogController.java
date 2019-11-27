@@ -57,8 +57,8 @@ public class PersonEditDialogController extends TableController {
             public void handle(MouseEvent click) {
                 if (click.getClickCount() == 2) {
                     orderTableView.getSelectionModel().getSelectedItem();
+                    id = orderTableView.getSelectionModel().getSelectedItem().getOrderId();
                     openNewScene(orderTableView, "/sample/view/currentOrderDetails.fxml");
-
                 }
             }
 
