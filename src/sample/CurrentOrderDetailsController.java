@@ -1,14 +1,12 @@
 package sample;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TitledPane;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class CurrentOrderDetailsController extends TableController{
@@ -54,21 +52,52 @@ public class CurrentOrderDetailsController extends TableController{
         String [] substr = client.split(" ");
         ReceiveUser receiveUser = new ReceiveUser(substr[1].trim(), substr[0].trim(), substr[2].trim(), id);
         ResultSet resultSet = dataBaseHandler.findUser(receiveUser, Const.ORDERS_TABLE);
-        try {
-            while (resultSet.next()) {
-                clientInfo.setText(substr[0] + " " + substr[1] + "\n" + substr[2].trim());
-                startOrderDate.setText(resultSet.getString("startOrderDate"));
-                endOrderDate.setText(resultSet.getString("endOrderDate"));
-                details.setText(resultSet.getString("orderDetails"));
-                orderPrice.setText(String.valueOf(resultSet.getInt("price")));
+
+            User user = new User();
+            try { while (resultSet.next()) {
+                user.setFirstname(resultSet.getString("firstname"));
+                user.setLastname(resultSet.getString("lastname"));
+                user.setPhone(resultSet.getString("phone"));
+                user.setStartOrderDate(resultSet.getTimestamp("startOrderDate"));
+                user.setEndOrderDate(resultSet.getTimestamp("endOrderDate"));
+                user.setOrderDetails(resultSet.getString("orderDetails"));
+                user.setPrice(resultSet.getInt("price"));
                 if (resultSet.getString("CheckPayment").equals("+")) {
                     priceCheckbox.setSelected(true);
                 }
+                user.setCheckPayment("+");
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+                clientInfo.setText(substr[0] + " " + substr[1] + "\n" + substr[2].trim());
+                startOrderDate.setText(String.valueOf(user.getStartOrderDate()));
+                endOrderDate.setText(String.valueOf(user.getEndOrderDate()));
+                details.setText(user.getOrderDetails());
+                orderPrice.setText(String.valueOf(user.getPrice()));
 
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+        closeOrderButton.setOnAction(event -> {
+            if (priceCheckbox.isSelected()){
+            dataBaseHandler.executeUser(user, Const.ORDERS_HISTORY_TABLE);
+            dataBaseHandler.currentOrderDecrement(user);
+                alert.setAlertType(Alert.AlertType.INFORMATION);
+                alert.setTitle("Информация");
+                alert.setHeaderText(null);
+                alert.setContentText("Заказ успешно завершен!");
+                alert.showAndWait();
+                openNewScene(closeOrderButton, "/sample/view/sample.fxml");
+
+            }else {
+                alert.setAlertType(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Информация");
+                alert.setHeaderText(null);
+                alert.setContentText("Оплата внесена?");
+                Optional<ButtonType> option = alert.showAndWait();
+                if (option.get() == ButtonType.OK) {
+                    priceCheckbox.setSelected(true);
+                }
+            }
+        });
 
 
     }

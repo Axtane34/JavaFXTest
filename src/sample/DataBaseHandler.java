@@ -12,10 +12,20 @@ public class DataBaseHandler extends Configs {
 
         return dbConnection;
     }
+    public void currentOrderDecrement(User user){
+        try {
+            Statement statement = getConnection().createStatement();
+            String update;
+            update = "UPDATE users SET currentOrder = currentOrder-1" + " WHERE phone = " + user.getPhone();
+            statement.executeUpdate(update);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
-    public void executeUser(User user) {
-        if (user.getStartOrderDate()==null) {
-            String insert = "INSERT INTO " + Const.USER_TABLE + "("
+    public void executeUser(User user, String table) {
+        if (table.equals(Const.USER_TABLE)) {
+            String insert = "INSERT INTO " + table + "("
                     + Const.USERS_FIRSTNAME + ", "
                     + Const.USERS_LASTNAME + ", "
                     + Const.USERS_PHONE + ")" +
@@ -31,7 +41,7 @@ public class DataBaseHandler extends Configs {
                 e.printStackTrace();
             }
         }else {
-            String insert = "INSERT INTO " + Const.ORDERS_TABLE + "("
+            String insert = "INSERT INTO " + table + "("
                     + Const.USERS_FIRSTNAME + ", "
                     + Const.USERS_LASTNAME + ", "
                     + Const.USERS_PHONE + ", "
@@ -54,8 +64,21 @@ public class DataBaseHandler extends Configs {
 
                 preparedStatement.executeUpdate();
                 Statement statement = getConnection().createStatement();
-                String hex = "UPDATE users SET currentOrder = " + "'+'" + " WHERE phone = " + user.getPhone();
+                String hex;
+                String delete = "";
+                String change = "";
+                if (table.equals(Const.ORDERS_TABLE)) {
+                    hex = "UPDATE users SET currentOrder = currentOrder+1" + " WHERE phone = " + user.getPhone();
+                }else {
+                    hex = "UPDATE users SET closeOrders = closeOrders+1" + " WHERE phone = " + user.getPhone();
+                    delete = "DELETE from currentorder WHERE id = '" + ControllerParent.id + "'";
+
+                }
+                System.out.println(hex);
                 statement.executeUpdate(hex);
+                if (table.equals(Const.ORDERS_HISTORY_TABLE)) {
+                    statement.executeUpdate(delete);
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }

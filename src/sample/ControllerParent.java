@@ -88,7 +88,7 @@ public class ControllerParent {
 
                     alert.showAndWait();
                 } else {
-                    dataBaseHandler.executeUser(user);
+                    dataBaseHandler.executeUser(user, Const.USER_TABLE);
                     alert.setAlertType(Alert.AlertType.INFORMATION);
                     alert.setTitle("Информация");
                     alert.setHeaderText(null);
@@ -105,7 +105,7 @@ public class ControllerParent {
 
                 alert.showAndWait();
             }
-        }else if (table.equals(Const.ORDERS_TABLE)){
+        } else if (table.equals(Const.ORDERS_TABLE)) {
             String firstname = name_field.getText().trim();
             String lastname = surname_field.getText().trim();
             String phone = phone_field.getText().trim();
@@ -115,7 +115,7 @@ public class ControllerParent {
             try {
                 timestamp1.setTime(System.currentTimeMillis() + (hours.getValue() * 1000 * 60 * 60) + (days.getValue() * 1000 * 60 * 60 * 24));
                 money = Integer.parseInt(price.getText().trim());
-            }catch (NullPointerException | NumberFormatException e){
+            } catch (NullPointerException | NumberFormatException e) {
                 alert.setAlertType(Alert.AlertType.ERROR);
                 alert.setTitle("Ошибка :(");
                 alert.setHeaderText(null);
@@ -126,7 +126,7 @@ public class ControllerParent {
 
             String details = orderDetail.getText().trim();
             String check = "-";
-            if (checkPayment.isSelected()){
+            if (checkPayment.isSelected()) {
                 check = "+";
             }
             Pattern pattern = Pattern.compile("^(8)\\d{10}");
@@ -142,8 +142,8 @@ public class ControllerParent {
 
                     alert.showAndWait();
                 } else {
-                    User user = new User(firstname,lastname,phone,timestamp,timestamp1,details,money,check);
-                    dataBaseHandler.executeUser(user);
+                    User user = new User(firstname, lastname, phone, timestamp, timestamp1, details, money, check);
+                    dataBaseHandler.executeUser(user, Const.ORDERS_TABLE);
                     alert.setAlertType(Alert.AlertType.INFORMATION);
                     alert.setTitle("Информация");
                     alert.setHeaderText(null);
@@ -160,9 +160,10 @@ public class ControllerParent {
 
                 alert.showAndWait();
             }
-        }else {
-            //тут буду добавлять в историю заказов
         }
     }
-
 }
+
+
+
+

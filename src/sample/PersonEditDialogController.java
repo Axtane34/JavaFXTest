@@ -13,6 +13,8 @@ import java.util.ResourceBundle;
 
 public class PersonEditDialogController extends TableController {
 
+    private int count;
+
     @FXML
     private ResourceBundle resources;
 
@@ -47,9 +49,11 @@ public class PersonEditDialogController extends TableController {
         });
         currentOrderButton.setOnAction(event -> {
             searchOrder(Const.ORDERS_TABLE);
+            count = 1;
         });
         orderHistoryButton.setOnAction(event -> {
             searchOrder(Const.ORDERS_HISTORY_TABLE);
+            count = 2;
         });
 
         orderTableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -58,10 +62,13 @@ public class PersonEditDialogController extends TableController {
                 if (click.getClickCount() == 2) {
                     orderTableView.getSelectionModel().getSelectedItem();
                     id = orderTableView.getSelectionModel().getSelectedItem().getOrderId();
-                    openNewScene(orderTableView, "/sample/view/currentOrderDetails.fxml");
+                    if (count==1) {
+                        openNewScene(orderTableView, "/sample/view/currentOrderDetails.fxml");
+                    }else {
+                        openNewScene(orderTableView, "/sample/view/historyOrderDetails.fxml");
+                    }
                 }
             }
-
         });
     }
 }

@@ -31,7 +31,7 @@ public class TableController extends ControllerParent {
     @FXML
     private TableColumn<ReceiveUser, String> currentOrderColumn;
 
-    private Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    protected Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 
     @FXML
     protected TableView<ReceiveUser> orderTableView;
@@ -115,10 +115,10 @@ public class TableController extends ControllerParent {
             public void handle(MouseEvent click) {
                 if (click.getClickCount() == 2) {
                     tableView.getSelectionModel().getSelectedItem();
-                    if (tableView.getSelectionModel().getSelectedItem().getCurrentOrder().equals("+")) {
-                        currentOrder = "Текущий заказ существует";
-                    } else {
+                    if (tableView.getSelectionModel().getSelectedItem().getCurrentOrder().equals("0")) {
                         currentOrder = "Текущий заказ отсутствует";
+                    } else {
+                        currentOrder = "Текущий заказ существует";
                     }
                     client = tableView.getSelectionModel().getSelectedItem().getFirstname() + " "
                             + tableView.getSelectionModel().getSelectedItem().getLastname() + " " + "\n"
