@@ -34,7 +34,7 @@ public class TableController extends ControllerParent {
     private Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 
     @FXML
-    private TableView<ReceiveUser> orderTableView;
+    protected TableView<ReceiveUser> orderTableView;
 
     @FXML
     private TableColumn<ReceiveUser, String> orderLastnameColumn;
@@ -134,6 +134,7 @@ public class TableController extends ControllerParent {
         String name = substr[1];
         String phone = substr[2].trim();
         ReceiveUser receiveUser = new ReceiveUser(name, lastname, phone);
+        int count = 0;
         DataBaseHandler dataBaseHandler = new DataBaseHandler();
         ResultSet resultSet = dataBaseHandler.findUser(receiveUser, table);
         try {
@@ -147,9 +148,24 @@ public class TableController extends ControllerParent {
                 int seventhColumn = resultSet.getInt("price");
                 String eighthColumn = resultSet.getString("CheckPayment");
                 data1.add(new ReceiveUser(firstColumn, secondColumn, thirdColumn, fourthColumn, fifthColumn, sixthColumn, seventhColumn, eighthColumn));
+                count++;
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        if (count < 1) {
+            alert.setTitle("Информация");
+            alert.setHeaderText(null);
+            if (table.equals(Const.ORDERS_TABLE)) {
+                alert.setContentText("Незавершенных заказов нет. Хотите создать новый?");
+            }else{
+                alert.setContentText("У клиента нет завершенных заказов. Хотите создать новый?");
+            }
+            Optional<ButtonType> option = alert.showAndWait();
+            if (option.get() == ButtonType.OK) {
+                openNewScene(orderTableView, "/sample/view/createOrderFrame.fxml");
+            }
+
         }
         orderFirstnameColumn.setCellValueFactory(cell -> cell.getValue().lastnameProperty());
         orderLastnameColumn.setCellValueFactory(cell -> cell.getValue().firstnameProperty());

@@ -1,8 +1,12 @@
 package sample;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TitledPane;
+import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -44,6 +48,22 @@ public class PersonEditDialogController extends TableController {
         currentOrderButton.setOnAction(event -> {
             searchOrder(Const.ORDERS_TABLE);
         });
+        orderHistoryButton.setOnAction(event -> {
+            searchOrder(Const.ORDERS_HISTORY_TABLE);
+        });
+
+        orderTableView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent click) {
+                if (click.getClickCount() == 2) {
+                    orderTableView.getSelectionModel().getSelectedItem();
+                    openNewScene(orderTableView, "/sample/view/currentOrderDetails.fxml");
+
+                }
+            }
+
+        });
     }
 }
+
 

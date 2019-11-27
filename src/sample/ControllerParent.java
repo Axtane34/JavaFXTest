@@ -104,7 +104,7 @@ public class ControllerParent {
 
                 alert.showAndWait();
             }
-        }else {
+        }else if (table.equals(Const.ORDERS_TABLE)){
             String firstname = name_field.getText().trim();
             String lastname = surname_field.getText().trim();
             String phone = phone_field.getText().trim();
@@ -159,7 +159,8 @@ public class ControllerParent {
 
                 alert.showAndWait();
             }
-
+        }else {
+            //тут буду добавлять в историю заказов
         }
     }
 
