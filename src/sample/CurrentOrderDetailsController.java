@@ -44,6 +44,9 @@ public class CurrentOrderDetailsController extends TableController{
     private CheckBox priceCheckbox;
 
     @FXML
+    private Button sendSmsButton;
+
+    @FXML
     void initialize() {
         backButton.setOnAction(event -> {
             openNewScene(backButton, "/sample/view/personEditDialog.fxml");
@@ -111,6 +114,25 @@ public class CurrentOrderDetailsController extends TableController{
                 }
             }
         });
+            sendSmsButton.setOnAction(event -> {
+                SmsSender smsSender = new SmsSender();
+                String text = receiveUser.getFirstname() + ", Ваш заказ готов!\nТел 677-800, Ателье";
+                smsSender.sendSms(receiveUser.getPhone(), text, "TEST-SMS");
+                if (SmsSender.resultString.contains("error")){
+                    alert.setAlertType(Alert.AlertType.ERROR);
+                    alert.setTitle("Информация");
+                    alert.setHeaderText(null);
+                    alert.setContentText("На счете недостаточно средств!");
+                    alert.showAndWait();
+                }else {
+                    alert.setAlertType(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Информация");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Сообщение отправлено!");
+                    alert.showAndWait();
+                }
+
+            });
 
 
     }

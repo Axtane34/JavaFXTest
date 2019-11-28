@@ -15,6 +15,7 @@ import java.util.regex.Pattern;
 public class CreateOrderFrameController extends ControllerParent {
 
     private final ObservableList<Integer> data = FXCollections.observableArrayList();
+    private final ObservableList<Integer> data1 = FXCollections.observableArrayList();
 
     @FXML
     private ResourceBundle resources;
@@ -93,8 +94,11 @@ public class CreateOrderFrameController extends ControllerParent {
         for (int i = 0; i < 13; i++) {
             data.add(i);
         }
+        for (int i = 0; i < 366; i++){
+            data1.add(i);
+        }
         hours.setItems(data);
-        days.setItems(data);
+        days.setItems(data1);
 
         backButton.setOnAction(event -> {
             openNewScene(backButton, "/sample/view/personEditDialog.fxml");

@@ -30,7 +30,7 @@
                     </font>
                 </Button>
             <ComboBox fx:id="hours" accessibleRole="CHECK_BOX" layoutX="13.0" layoutY="60.0" prefHeight="25.0" prefWidth="84.0" promptText="Часы" visibleRowCount="12" />
-            <ComboBox fx:id="days" accessibleRole="CHECK_BOX" layoutX="126.0" layoutY="60.0" prefHeight="25.0" prefWidth="84.0" promptText="Дни" visibleRowCount="6" />
+            <ComboBox fx:id="days" accessibleRole="CHECK_BOX" layoutX="126.0" layoutY="60.0" prefHeight="25.0" prefWidth="84.0" promptText="Дни" visibleRowCount="12" />
             <Label layoutX="22.0" layoutY="93.0" prefHeight="17.0" prefWidth="84.0" text="Часы" textFill="WHITE" />
             <Label layoutX="133.0" layoutY="93.0" prefHeight="17.0" prefWidth="84.0" text="Дни" textFill="WHITE" />
             <CheckBox fx:id="discountCheckbox" disable="true" layoutX="540.0" layoutY="59.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="148.0" text="Списать акцию" textFill="WHITE" />

@@ -35,6 +35,11 @@
                         </Button>
                         <Label layoutX="345.0" layoutY="165.0" prefHeight="27.0" prefWidth="97.0" text="Оплата" />
                         <CheckBox fx:id="priceCheckbox" layoutX="468.0" layoutY="170.0" mnemonicParsing="false" />
+                  <Button fx:id="sendSmsButton" layoutX="325.0" layoutY="427.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="148.0" text="Отправить SMS" textFill="#3c3f41">
+                     <font>
+                        <Font name="Monospaced Regular" size="14.0" />
+                     </font>
+                  </Button>
                     </children>
                 </AnchorPane>
             </content>
