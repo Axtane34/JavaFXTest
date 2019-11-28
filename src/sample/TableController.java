@@ -120,15 +120,9 @@ public class TableController extends ControllerParent {
             public void handle(MouseEvent click) {
                 if (click.getClickCount() == 2) {
                     tableView.getSelectionModel().getSelectedItem();
-                    if (tableView.getSelectionModel().getSelectedItem().getCurrentOrder().equals("0")) {
-                        currentOrder = "Текущий заказ отсутствует";
-                    } else {
-                        currentOrder = "Текущий заказ существует";
-                    }
                     client = tableView.getSelectionModel().getSelectedItem().getFirstname() + " "
                             + tableView.getSelectionModel().getSelectedItem().getLastname() + " " + "\n"
-                            + tableView.getSelectionModel().getSelectedItem().getPhone() + " " + "\n"
-                            + currentOrder;
+                            + tableView.getSelectionModel().getSelectedItem().getPhone();
                         openNewScene(tableView, "/sample/view/personEditDialog.fxml");
                 }
             }

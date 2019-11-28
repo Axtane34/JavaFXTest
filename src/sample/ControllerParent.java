@@ -17,7 +17,6 @@ import java.util.regex.Pattern;
 public class ControllerParent {
 
     public static String client;
-    public static String currentOrder;
     public static int id;
     public Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
@@ -162,7 +161,7 @@ public class ControllerParent {
                     alert.setContentText("Заказ успешно создан!");
 
                     alert.showAndWait();
-                    openNewScene(backButton, "/sample/view/sample.fxml");
+                    openNewScene(backButton, "/sample/view/personEditDialog.fxml");
                 }
             } else {
                 alert.setAlertType(Alert.AlertType.ERROR);

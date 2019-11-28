@@ -47,7 +47,7 @@ public class CreateOrderFrameController extends ControllerParent {
 
     @FXML
     void initialize() {
-        String [] substr = client.split(" ");
+        String[] substr = client.split(" ");
         surname_field.setText(substr[0]);
         name_field.setText(substr[1]);
         phone_field.setText(substr[2]);
@@ -61,7 +61,7 @@ public class CreateOrderFrameController extends ControllerParent {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        if (Integer.parseInt(discountCounter.getText())!=0){
+        if (Integer.parseInt(discountCounter.getText()) != 0) {
             discountCheckbox.setDisable(false);
         }
 
@@ -71,15 +71,15 @@ public class CreateOrderFrameController extends ControllerParent {
             if (!price.getText().equals("") && matcher.matches()) {
 
                 if (discountCheckbox.isSelected()) {
-                    double calc = Integer.parseInt(price.getText())*0.8;
+                    double calc = Integer.parseInt(price.getText()) * 0.8;
                     int actualPrice = (int) calc;
                     price.setText(String.valueOf(actualPrice));
                 } else {
-                    double calc = Integer.parseInt(price.getText())/0.8;
+                    double calc = Integer.parseInt(price.getText()) / 0.8;
                     int actualPrice = (int) calc;
                     price.setText(String.valueOf(actualPrice));
                 }
-            }else {
+            } else {
                 alert.setAlertType(Alert.AlertType.INFORMATION);
                 alert.setTitle("Информация");
                 alert.setHeaderText(null);
@@ -94,7 +94,7 @@ public class CreateOrderFrameController extends ControllerParent {
         for (int i = 0; i < 13; i++) {
             data.add(i);
         }
-        for (int i = 0; i < 366; i++){
+        for (int i = 0; i < 366; i++) {
             data1.add(i);
         }
         hours.setItems(data);
@@ -105,10 +105,10 @@ public class CreateOrderFrameController extends ControllerParent {
         });
 
         addNewOrderButton.setOnAction(event -> {
-        addNewUser(Const.ORDERS_TABLE);
-        if (discountCheckbox.isSelected()){
-        dataBaseHandler.discountDecrement(receiveUser);
-        }
+            addNewUser(Const.ORDERS_TABLE);
+            if (discountCheckbox.isSelected()) {
+                dataBaseHandler.discountDecrement(receiveUser);
+            }
         });
     }
 }
