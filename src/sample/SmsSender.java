@@ -39,7 +39,6 @@ public class SmsSender {
             }
             String result = sb.toString();
             resultString = result;
-            System.out.println(resultString);
 
             System.out.println("*** BEGIN ***");
             System.out.println(result);
