@@ -20,7 +20,7 @@ public class SmsSender {
     public void sendSms(String phone, String text, String sender){
         try {
             String name = "axtane";
-            String password = "rhbdtnrf345";
+            String password = "12345678";
 
             String authString = name + ":" + password;
             String authStringEnc = Base64.getEncoder().encodeToString(authString.getBytes());
