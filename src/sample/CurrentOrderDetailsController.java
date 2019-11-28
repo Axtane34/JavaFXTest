@@ -51,6 +51,7 @@ public class CurrentOrderDetailsController extends TableController{
         DataBaseHandler dataBaseHandler = new DataBaseHandler();
         String [] substr = client.split(" ");
         ReceiveUser receiveUser = new ReceiveUser(substr[1].trim(), substr[0].trim(), substr[2].trim(), id);
+        ReceiveUser receiveUser1 = new ReceiveUser(substr[1].trim(), substr[0].trim(), substr[2].trim());
         ResultSet resultSet = dataBaseHandler.findUser(receiveUser, Const.ORDERS_TABLE);
 
             User user = new User();
@@ -80,6 +81,18 @@ public class CurrentOrderDetailsController extends TableController{
             if (priceCheckbox.isSelected()){
             dataBaseHandler.executeUser(user, Const.ORDERS_HISTORY_TABLE);
             dataBaseHandler.currentOrderDecrement(user);
+            ResultSet resultSet1 = dataBaseHandler.findUser(receiveUser1, Const.USER_TABLE);
+                int closeOrdersCount = 0;
+                try {
+                    while (resultSet1.next()) {
+                        closeOrdersCount = resultSet1.getInt("closeOrders");
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                if (closeOrdersCount%5==0 && closeOrdersCount!=0){
+                    dataBaseHandler.discountIncrement(receiveUser1);
+                }
                 alert.setAlertType(Alert.AlertType.INFORMATION);
                 alert.setTitle("Информация");
                 alert.setHeaderText(null);

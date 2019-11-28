@@ -31,6 +31,9 @@ public class TableController extends ControllerParent {
     @FXML
     private TableColumn<ReceiveUser, String> currentOrderColumn;
 
+    @FXML
+    private TableColumn<ReceiveUser, String> discountCountColumn;
+
     protected Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 
     @FXML
@@ -88,7 +91,8 @@ public class TableController extends ControllerParent {
                     String secondColumn = resultSet.getString("firstname");
                     String thirdColumn = resultSet.getString("phone");
                     String fourthColumn = resultSet.getString("currentOrder");
-                    data.add(new ReceiveUser(firstColumn, secondColumn, thirdColumn, fourthColumn));
+                    String fifthColumn = resultSet.getString("discountCount");
+                    data.add(new ReceiveUser(firstColumn, secondColumn, thirdColumn, fourthColumn, fifthColumn));
                     count++;
                 }
             } catch (SQLException e) {
@@ -108,6 +112,7 @@ public class TableController extends ControllerParent {
             lastnameColumn.setCellValueFactory(cell -> cell.getValue().lastnameProperty());
             phoneColumn.setCellValueFactory(cell -> cell.getValue().phoneProperty());
             currentOrderColumn.setCellValueFactory(cell -> cell.getValue().currentOrderProperty());
+            discountCountColumn.setCellValueFactory(cell -> cell.getValue().discountCountProperty());
             tableView.setItems(data);
 
         tableView.setOnMouseClicked(new EventHandler<MouseEvent>() {

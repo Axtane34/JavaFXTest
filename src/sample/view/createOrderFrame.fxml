@@ -4,6 +4,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -22,7 +23,7 @@
             <TextField fx:id="phone_field" layoutX="450.0" layoutY="14.0" prefHeight="27.0" prefWidth="196.0" promptText="Телефон" />
             <TextField fx:id="price" layoutX="232.0" layoutY="59.0" prefHeight="27.0" prefWidth="196.0" promptText="Цена" />
             <TextField fx:id="orderDetail" alignment="TOP_LEFT" layoutX="14.0" layoutY="117.0" prefHeight="159.0" prefWidth="633.0" promptText="Комментарий к заказу" />
-            <CheckBox fx:id="checkPayment" layoutX="451.0" layoutY="59.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="99.0" text="Оплачено" textFill="WHITE" />
+            <CheckBox fx:id="checkPayment" layoutX="451.0" layoutY="59.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="84.0" text="Оплачено" textFill="WHITE" />
                 <Button fx:id="addNewOrderButton" layoutX="638.0" layoutY="310.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="148.0" text="Добавить заказ" textFill="#3c3f41">
                     <font>
                         <Font name="Monospaced Bold" size="14.0" />
@@ -32,13 +33,11 @@
             <ComboBox fx:id="days" accessibleRole="CHECK_BOX" layoutX="126.0" layoutY="60.0" prefHeight="25.0" prefWidth="84.0" promptText="Дни" visibleRowCount="6" />
             <Label layoutX="22.0" layoutY="93.0" prefHeight="17.0" prefWidth="84.0" text="Часы" textFill="WHITE" />
             <Label layoutX="133.0" layoutY="93.0" prefHeight="17.0" prefWidth="84.0" text="Дни" textFill="WHITE" />
+            <CheckBox fx:id="discountCheckbox" disable="true" layoutX="540.0" layoutY="59.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="148.0" text="Списать акцию" textFill="WHITE" />
+            <TextArea fx:id="discountCounter" editable="false" layoutX="702.0" layoutY="54.0" prefHeight="27.0" prefWidth="41.0" />
+            <Label layoutX="675.0" layoutY="19.0" prefHeight="17.0" prefWidth="99.0" text="Доступно акций" textFill="WHITE" />
             </children>
         </AnchorPane>
-        <Label layoutX="15.0" layoutY="14.0" prefHeight="20.0" prefWidth="161.0" text="База клиентов" textFill="#9a7731">
-            <font>
-                <Font name="Monospaced Bold" size="16.0" />
-            </font>
-        </Label>
       <Label layoutX="230.0" layoutY="34.0" prefHeight="50.0" prefWidth="340.0" text="Оформление нового заказа" textFill="#9a7731">
          <font>
             <Font name="Monospaced Bold" size="23.0" />

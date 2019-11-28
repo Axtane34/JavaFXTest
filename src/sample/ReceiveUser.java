@@ -7,6 +7,7 @@ public class ReceiveUser {
     private StringProperty lastname;
     private StringProperty phone;
     private StringProperty currentOrder;
+    private StringProperty discountCount;
     private StringProperty startOrderDate;
     private StringProperty endOrderDate;
     private StringProperty orderDetails;
@@ -40,6 +41,14 @@ public class ReceiveUser {
         this.orderId = new SimpleIntegerProperty(orderId);
     }
 
+    public ReceiveUser(String firstname, String lastname, String phone, String currentOrder, String discountCount) {
+        this.firstname = new SimpleStringProperty(firstname);
+        this.lastname = new SimpleStringProperty(lastname);
+        this.phone = new SimpleStringProperty(phone);
+        this.currentOrder = new SimpleStringProperty(currentOrder);
+        this.discountCount = new SimpleStringProperty(discountCount);
+    }
+
     public ReceiveUser(String firstname, String lastname, String phone, int orderId) {
         this.firstname = new SimpleStringProperty(firstname);
         this.lastname = new SimpleStringProperty(lastname);
@@ -70,6 +79,17 @@ public class ReceiveUser {
         this.orderId = new SimpleIntegerProperty(orderId);
     }
 
+    public String getDiscountCount() {
+        return discountCount.get();
+    }
+
+    public StringProperty discountCountProperty() {
+        return discountCount;
+    }
+
+    public void setDiscountCount(String discountCount) {
+        this.discountCount.set(discountCount);
+    }
 
     public String getStartOrderDate() {
         return startOrderDate.get();

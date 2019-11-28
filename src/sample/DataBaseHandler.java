@@ -23,6 +23,28 @@ public class DataBaseHandler extends Configs {
         }
     }
 
+    public void discountDecrement(ReceiveUser receiveUser){
+        try {
+            Statement statement = getConnection().createStatement();
+            String update;
+            update = "UPDATE users SET discountCount = discountCount-1" + " WHERE phone = " + receiveUser.getPhone();
+            statement.executeUpdate(update);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void discountIncrement(ReceiveUser receiveUser){
+        try {
+            Statement statement = getConnection().createStatement();
+            String update;
+            update = "UPDATE users SET discountCount = discountCount+1" + " WHERE phone = " + receiveUser.getPhone();
+            statement.executeUpdate(update);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void executeUser(User user, String table) {
         if (table.equals(Const.USER_TABLE)) {
             String insert = "INSERT INTO " + table + "("
@@ -66,7 +88,6 @@ public class DataBaseHandler extends Configs {
                 Statement statement = getConnection().createStatement();
                 String hex;
                 String delete = "";
-                String change = "";
                 if (table.equals(Const.ORDERS_TABLE)) {
                     hex = "UPDATE users SET currentOrder = currentOrder+1" + " WHERE phone = " + user.getPhone();
                 }else {
@@ -74,7 +95,6 @@ public class DataBaseHandler extends Configs {
                     delete = "DELETE from currentorder WHERE id = '" + ControllerParent.id + "'";
 
                 }
-                System.out.println(hex);
                 statement.executeUpdate(hex);
                 if (table.equals(Const.ORDERS_HISTORY_TABLE)) {
                     statement.executeUpdate(delete);
@@ -123,7 +143,6 @@ public class DataBaseHandler extends Configs {
         try {
             Statement statement = getConnection().createStatement();
             resultSet = statement.executeQuery(select);
-            System.out.println(select);
         } catch (SQLException e) {
             e.printStackTrace();
         }

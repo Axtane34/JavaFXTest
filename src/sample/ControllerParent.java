@@ -40,7 +40,7 @@ public class ControllerParent {
     private TextField orderDetail;
 
     @FXML
-    private TextField price;
+    protected TextField price;
 
     @FXML
     public ComboBox<Integer> hours;
@@ -112,9 +112,21 @@ public class ControllerParent {
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
             Timestamp timestamp1 = new Timestamp(System.currentTimeMillis());
             int money = 0;
+            Pattern pattern = Pattern.compile("\\d+");
+            Matcher matcher = pattern.matcher(price.getText().trim());
             try {
                 timestamp1.setTime(System.currentTimeMillis() + (hours.getValue() * 1000 * 60 * 60) + (days.getValue() * 1000 * 60 * 60 * 24));
-                money = Integer.parseInt(price.getText().trim());
+                if (matcher.matches()) {
+                    money = Integer.parseInt(price.getText().trim());
+                }else {
+                    alert.setAlertType(Alert.AlertType.ERROR);
+                    alert.setTitle("Ошибка!");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Указывая цену, используйте целочисленные значения!");
+
+                    alert.showAndWait();
+                    price.setText("");
+                }
             } catch (NullPointerException | NumberFormatException e) {
                 alert.setAlertType(Alert.AlertType.ERROR);
                 alert.setTitle("Ошибка :(");
@@ -129,8 +141,8 @@ public class ControllerParent {
             if (checkPayment.isSelected()) {
                 check = "+";
             }
-            Pattern pattern = Pattern.compile("^(8)\\d{10}");
-            Matcher matcher = pattern.matcher(phone);
+            pattern = Pattern.compile("^(8)\\d{10}");
+            matcher = pattern.matcher(phone);
 
             if (!firstname.equals("") && !lastname.equals("") && !phone.equals("") && !timestamp.equals(timestamp1) && !details.equals("") && !price.getText().trim().equals("")) {
 

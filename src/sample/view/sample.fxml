@@ -17,7 +17,8 @@
                 <TableColumn fx:id="usernameColumn" prefWidth="152.0" text="Фамилия" />
                 <TableColumn fx:id="lastnameColumn" prefWidth="183.0" text="Имя" />
                   <TableColumn fx:id="phoneColumn" minWidth="0.0" prefWidth="180.0" text="Телефон" />
-                  <TableColumn fx:id="currentOrderColumn" prefWidth="171.0" text="Текущий заказ" />
+                  <TableColumn fx:id="currentOrderColumn" prefWidth="131.0" text="Текущих заказов" />
+                  <TableColumn fx:id="discountCountColumn" prefWidth="129.0" text="Доступно акций" />
               </columns>
             </TableView>
             <Button fx:id="createButton" layoutX="537.0" layoutY="313.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="218.0" text="Добавить нового клиента" textFill="#3c3f41">
