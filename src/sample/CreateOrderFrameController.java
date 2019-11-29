@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.sql.ResultSet;
@@ -42,7 +43,7 @@ public class CreateOrderFrameController extends ControllerParent {
     private CheckBox discountCheckbox;
 
     @FXML
-    private TextArea discountCounter;
+    private Text discountCounter;
 
 
     @FXML
@@ -74,10 +75,12 @@ public class CreateOrderFrameController extends ControllerParent {
                     double calc = Integer.parseInt(price.getText()) * 0.8;
                     int actualPrice = (int) calc;
                     price.setText(String.valueOf(actualPrice));
+                    discountCounter.setText(String.valueOf(Integer.parseInt(discountCounter.getText())-1));
                 } else {
                     double calc = Integer.parseInt(price.getText()) / 0.8;
                     int actualPrice = (int) calc;
                     price.setText(String.valueOf(actualPrice));
+                    discountCounter.setText(String.valueOf(Integer.parseInt(discountCounter.getText())+1));
                 }
             } else {
                 alert.setAlertType(Alert.AlertType.INFORMATION);
