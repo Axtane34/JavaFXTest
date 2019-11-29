@@ -73,8 +73,10 @@ public class CurrentOrderDetailsController extends TableController {
                 user.setCheckPayment("+");
             }
             clientInfo.setText(substr[0] + " " + substr[1] + "\n" + substr[2].trim());
-            startOrderDate.setText(String.valueOf(user.getStartOrderDate()));
-            endOrderDate.setText(String.valueOf(user.getEndOrderDate()));
+            String s = String.valueOf(user.getStartOrderDate()).substring(0, String.valueOf(user.getStartOrderDate()).length() - 2);
+            startOrderDate.setText(s);
+            s = String.valueOf(user.getEndOrderDate()).substring(0, String.valueOf(user.getEndOrderDate()).length() - 2);
+            endOrderDate.setText(s);
             details.setText(user.getOrderDetails());
             orderPrice.setText(String.valueOf(user.getPrice()));
 

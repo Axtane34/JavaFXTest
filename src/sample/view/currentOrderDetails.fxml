@@ -17,8 +17,14 @@
                         <TextArea fx:id="startOrderDate" editable="false" layoutX="468.0" layoutY="17.0" prefHeight="37.0" prefWidth="314.0" />
                         <TextArea fx:id="endOrderDate" editable="false" layoutX="468.0" layoutY="68.0" prefHeight="37.0" prefWidth="314.0" />
                         <TextArea fx:id="orderPrice" editable="false" layoutX="468.0" layoutY="120.0" prefHeight="20.0" prefWidth="148.0" />
-                        <TextArea fx:id="details" editable="false" layoutX="14.0" layoutY="202.0" prefHeight="201.0" prefWidth="769.0" />
-                        <TextArea fx:id="clientInfo" editable="false" layoutX="14.0" layoutY="14.0" prefHeight="84.0" prefWidth="255.0" />
+                        <TextArea fx:id="details" editable="false" layoutX="14.0" layoutY="202.0" prefHeight="201.0" prefWidth="769.0">
+                     <font>
+                        <Font size="13.0" />
+                     </font></TextArea>
+                        <TextArea fx:id="clientInfo" editable="false" layoutX="14.0" layoutY="14.0" prefHeight="84.0" prefWidth="255.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font></TextArea>
                         <Label layoutX="345.0" layoutY="25.0" prefHeight="27.0" prefWidth="97.0" text="Дата создания" />
                         <Label layoutX="345.0" layoutY="73.0" prefHeight="27.0" prefWidth="97.0" text="Дата завершения" />
                         <Label layoutX="345.0" layoutY="125.0" prefHeight="27.0" prefWidth="97.0" text="Цена" />
