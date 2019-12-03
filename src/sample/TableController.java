@@ -102,6 +102,9 @@ public class TableController extends ControllerParent {
                 alert.setTitle("Информация");
                 alert.setHeaderText(null);
                 alert.setContentText("Такой клиент в базе отсутствует. Хотите добавить клиента?");
+                name = receiveUser.getFirstname();
+                userlastname = receiveUser.getLastname();
+                userphone = receiveUser.getPhone();
                 Optional<ButtonType> option = alert.showAndWait();
                 if (option.get() == ButtonType.OK) {
                     openNewScene(tableView, "/sample/view/add.fxml");

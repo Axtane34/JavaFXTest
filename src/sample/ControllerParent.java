@@ -17,6 +17,9 @@ import java.util.regex.Pattern;
 public class ControllerParent {
 
     public static String client;
+    public static String name;
+    public static String userlastname;
+    public static String userphone;
     public static int id;
     public Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
@@ -24,13 +27,13 @@ public class ControllerParent {
     public Button backButton;
 
     @FXML
-    private TextField surname_field;
+    protected TextField surname_field;
 
     @FXML
-    private TextField name_field;
+    protected TextField name_field;
 
     @FXML
-    private TextField phone_field;
+    protected TextField phone_field;
 
     @FXML
     private CheckBox checkPayment;
@@ -94,7 +97,10 @@ public class ControllerParent {
                     alert.setContentText("Клиент успешно добавлен!");
 
                     alert.showAndWait();
-                    openNewScene(backButton, "/sample/view/sample.fxml");
+                    client = user.getLastname() + " "
+                            + user.getFirstname() + " " + "\n"
+                            + user.getPhone();
+                    openNewScene(backButton, "/sample/view/personEditDialog.fxml");
                 }
             } else {
                 alert.setAlertType(Alert.AlertType.ERROR);
